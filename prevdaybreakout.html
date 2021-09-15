@@ -1,0 +1,162 @@
+<html>
+	<head>
+		<link rel="icon" href="./fevicon.png" sizes="16x16">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="./screenerstyle.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />  
+		
+		<!-- navigation bar -->
+		<header>
+			<div class="topnav">
+				<a class="active" href="./index.html">Tips</a>
+				<!-- <button class="dropbtn">
+					<a href="#news">Strategies</a>
+				</button> -->
+				
+				<div class="dropdown">
+					<a href="#">Strategies</a>
+					<div class="dropdown-content">
+						<ul>
+							
+							<a href="./openhigh&low.html">Open high/low</a>
+							
+							<!-- <a href="./30minbreakout.html">30 mins breakout</a> -->
+							
+							<a href="./prevdaybreakout.html">Previous day breakout</a>
+						</ul>
+						<!-- <button class="dropbtn">Dropdown</button> -->
+					</div>
+				</div>
+
+				<style>
+				
+					.box {
+						display:inline-block;
+						text-align: center;
+						border: 10px;
+						/* border-collapse: collapse; */
+						width: 11%;
+						min-width: 100;
+					}
+	
+					.heading{
+						/* font-size:1.2em; */
+						color:white;
+						padding: 10;
+						font-weight: bold; background-color: black; border-bottom: 4px double black;
+					}
+					.row{
+						/* display:table-row; */
+						/* display: inline-block; */
+						padding: 5;
+						height: 20;
+					}
+	
+				</style>				
+				
+				<!-- <a href="#contact">Contact</a> -->
+				<div id="top-right">
+					<a href="./about.html">About</a>
+				</div>
+				
+			</div>
+		</header>
+		
+	</head>
+	
+	<body>
+		<div id="wrapper">
+			<br>
+			<main>
+				
+				<h1>Previous day breakout</h1> 
+				<div class="square">
+					<h2>Insight of this Strategy</h2>
+					<hr><hr>
+					<div class="center">
+						
+						<p>
+							Buy if the price touches previous day high with stop loss as previous day low.
+						</p>
+						
+						<p>
+							Sell if the price touches previous day low with stop loss as previous day high.
+						</p>
+						
+						<p>
+							9.45 AM: Entry for Long:
+						</p>
+						<p>						
+							Note down previous day’s High price and after market opens today, wait for the price to breakout yesterday’s high and when broken check if Today’s Open = Today’s Low at that time, if Yes go long with Stop loss as today’s Low price.
+						</p>
+						<p>						
+							9.45 AM: Entry for Short:
+						</p>
+						<p>
+							Note down previous day’s Low price and after market opens today, wait for the price to breakdown yesterday’s low and when broken check if Today’s Open = Today’s High at that time, if Yes go Short with Stop loss as today’s High price.
+						</p>
+						
+					</div>
+				</div>
+				<hr>
+				<!-- table -->
+				
+				<div class="output"></div>
+			
+			<script type= "text/javascript">
+				const output = document.querySelector('.output');
+				const btn = document.querySelector('button');
+				const url = 'https://docs.google.com/spreadsheets/d/';
+				const ssid = '1bs4XWS-9SEVMdYhXPBbkxHOTSpg8DYsc7fNdk2osgB0';
+				const q1 = '/gviz/tq?';
+				const q2 = 'tqx=out:json';
+				const q3 = 'sheet=Sheet2';
+				
+				getData();
+				
+				function getData(){
+					let url1 = `${url}${ssid}${q1}&${q2}&${q3}`;
+					fetch(url1)
+					.then(res => res.text())
+					.then(data => {
+						const json = JSON.parse(data.substr(47).slice(0,-2));
+						console.log(json.table);
+						const headings = makeCell(output,'','heading');
+						json.table.cols.forEach((col)=>{
+							const el = makeCell(headings,col.label,'box');
+						})
+						json.table.rows.forEach((row)=>{
+							//console.log(row);
+							const div = makeCell(output,'','row');
+							row.c.forEach((cell)=>{
+								const ele1 = makeCell(div,`${cell.v}`,'box');
+							})
+						})
+						
+					})
+				}
+				
+				function makeCell(parent,html,classAdd){
+					const ele = document.createElement('div');
+					parent.append(ele);
+					ele.innerHTML = html;
+					ele.classList.add(classAdd);
+					return ele;
+				}
+				</script>
+			
+				
+			<!-- <section id="footer">
+			</section> -->
+		</main>
+		<hr>
+		<div class="footer">	
+			<p>Author: Prabhash Rai<br>
+				
+				<a href="https://prabhashrai02.github.io/portfolio/" style="color: white;">Know more about me!!!</a></p>
+			</div>
+		</div>
+	</body>
+
+
+</html> 

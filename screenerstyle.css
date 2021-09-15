@@ -1,0 +1,242 @@
+       /* different devices */
+       
+       #header, #menu, #body, #footer{
+         margin-left: 10%;
+         margin-right: 10%;
+
+         box-shadow: 3px, 5px, 7px, #666666;
+         border: 1px solid black;
+       }
+
+       #wrapper{
+         width: 100%;
+       }
+
+
+       @viewport{
+         zoom: 1.0;
+         width: extend-to-zoom;
+       }
+
+       @-ms-viewport{
+         width: extend-to-zoom;
+         zoom: 1.0;
+       }
+
+    
+    /* nav bar */
+    .topnav {
+        background-color: black;
+        
+        /* background-color: darkblue; */
+        display: in;
+        position: fixed;
+        width: 100%;
+        /* top: 0; */
+        overflow: hidden;
+        margin: -12px;
+      }
+      
+      #top-right{
+        float: right;
+      }
+
+      /* inside nav bar */
+      .topnav a {
+        float: left;
+        width: auto;
+        color: #ffffff;
+        /* text-align: center; */
+        padding: 14px 20px;
+        text-decoration: wavy;
+        font-size: 17px;
+      }
+      
+    /* colour link of nav bar */
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+      
+      /* Add a color to the active/current link */
+      .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+      }
+
+      /* Dropdown Button */
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-flex;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    margin-top: 48px;
+    display: none;
+    position: fixed;
+    /* position: absolute; */
+    background-color: #f1f1f1;
+    min-height: fit-content;
+    width: 17rem;
+    /* max-width: 1rem; */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+
+	/* table */
+
+    table {border-collapse: collapse; width: 100%;}
+
+    td {border: thin  black; padding: 10px; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+    tr.head th, tr.head td {font-weight: bold; background-color: black; border-bottom: 4px double black;}
+    span.linetitle {font-weight: bold;}
+    div.lineclass {font-style: italic;}
+    .title, .result {width: 80%;}
+    .notes {width: 15%;}
+    
+    tr:nth-child(even) {
+        background-color: #f2f2f0;
+    }
+
+    /* strategy */
+    
+			.square{
+        align-self: center;
+			  background-color: lightgrey;
+			  /* width: 300px; */
+			  border: 5px solid rgb(240, 23, 106);
+			  padding: 2%;
+			  margin: 20px;
+			}
+
+    .center{
+      text-align: center;
+      font-size: 20px;
+      padding: 10px;
+    }
+
+
+
+    /* table heading  */
+	  h1 {text-align: center; background-color:#f2f2f0; font-size: 50px;}
+    h2 {text-align: center; font-family: 'Times New Roman', Times, serif; font-size: 30px;}
+  
+    body {margin: 12px; font-size: 15px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
+    /* background-image: -moz-linear-gradient(green, yellow) */
+	  form {display: none;}
+
+
+    /* container */
+
+    /* section{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 20px;
+    } */
+
+    .container{
+      /* height: 65vh;
+    opacity: 2;
+    background-image: url("https://img.wallpapersafari.com/desktop/1920/1080/92/28/9aECDP.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding-top: 1.2rem; */
+
+        width: 100%;
+        height: 100%;
+        
+
+        /* background: url('./rulesback.jpg'); */
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        margin-right: 10%;
+        /* padding-top: 1.2rem; */
+        margin-top: 12px;
+        /* margin-left: -12px;  */
+        
+    }
+
+    .logo{
+      height: 1000px;
+      /* align-items: right; */
+    }
+
+    /* rules */
+    #rules{
+        font-size: 50px;
+        font-weight: 1000;
+        /* align-items: center; */
+        text-align: center;
+      }
+      
+      #rules-content{
+        font-size: 20px;
+        
+        align-items: center;
+      }
+
+    .top-right {
+      position: absolute;
+      top: 100px;
+      /* right: px; */
+      /* align-content: center; */
+      text-align: left;
+      margin-left: 50%;
+      font-size: medium;
+    }
+   
+
+    .footer{
+      object-position: bottom;
+      /* position: fixed; */
+      text-align: center;
+      padding: 3px;
+      background-color: #333;
+      color: white;
+      margin-bottom: -12px;
+    }
+
+   #about{
+     color: #f1f1f1;
+     text-align: center;
+      font-size: 20px;
+      padding: 10px;
+      flex-wrap: wrap-reverse;
+     position: inherit;
+     /* text-align: center; */
+     /* top: 250px; */
+     /* right: 40%; */
+   }

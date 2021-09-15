@@ -1,0 +1,139 @@
+<html>
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="./screenerstyle.css">
+		<meta name="viewport" content="height=device-height content="width=device-width, initial-scale=1" /> 
+		<!-- table -->
+		<script type="text/javascript">
+			var spData = null;
+			function doData(json) {
+				spData = json.feed.entry;
+			}
+			
+			function drawCell(tr, val) {
+				var td = $("<td/>");
+				tr.append(td);
+				td.append(val);
+				return td;
+			}
+			function drawRow(table, rowData) {
+				if (rowData == null) return null;
+				if (rowData.length == 0) return null;
+				var tr = $("<tr/>");
+				table.append(tr);
+				for(var c=0; c<rowData.length; c++) {
+					drawCell(tr, rowData[c]);
+				}
+				return tr;
+			}
+			
+			function drawTable(parent) {
+				var table = $("<table/>");
+				parent.append(table);
+				return table;
+			}
+			
+			function readData(parent) {
+				var data = spData;
+				var table = drawTable(parent);
+				var rowData = [];
+				
+				for(var r=0; r<data.length; r++) {
+					var cell = data[r]["gs$cell"];
+					var val = cell["$t"];
+					if (cell.col == 1) {
+						drawRow(table, rowData);
+						rowData = [];
+					}
+					rowData.push(val);
+				}
+				drawRow(table, rowData);
+			}
+			$(document).ready(function(){
+				readData($("#data"));
+			});
+			
+			</script>   
+		
+		<script src="https://spreadsheets.google.com/feeds/cells/1bs4XWS-9SEVMdYhXPBbkxHOTSpg8DYsc7fNdk2osgB0/1/public/values?alt=json-in-script&callback=doData"></script>
+		
+		
+		<!-- navigation bar -->
+	<header>
+		<div class="topnav">
+			<a class="active" href="./index.html">Tips</a>
+		<!-- <button class="dropbtn">
+			<a href="#news">Strategies</a>
+		</button> -->
+
+			<div class="dropdown">
+				<a href="#">Strategies</a>
+				<div class="dropdown-content">
+					<ul>
+						
+							<a href="./openhigh&low.html">Open high/low</a>
+						
+							<a href="./30minbreakout.html">30 mins breakout</a>
+						
+							<a href="./prevdaybreakout.html">Previous day breakout</a>
+					</ul>
+				<!-- <button class="dropbtn">Dropdown</button> -->
+				</div>
+			</div>
+			
+			
+			<a href="#contact">Contact</a>
+			<div id="top-right">
+				<a href="#about">About</a>
+			</div>
+			
+		</div>
+	</header>
+		
+	</head>
+	
+	<body>
+		<br>
+		<main>
+
+			<h1>Open High / Open low</h1> 
+			<div class="square">
+				<h2>Insight of this Strategy</h2>
+				<hr><hr>
+				<div class="center">
+					
+						<p> Intraday trading Days Open = Days Low.</p>
+						<p>A trader can make a “Buy” position after 5-10 minutes of the market opening. When the scrip follows the rule Days Open = Days Low.</p> 
+						<p>	For Open=Low, your stop loss should be the low of the first 15-minute candle and if it breaks the low, get out of that stock.
+						</p>
+						<p> For Open=High, your stop loss should be the high of the first candle if it breaks the high, get out of that stock.
+						</p>
+						<p> Don't average if the order goes against you.
+						</p>
+						<p>Keep trailing stop-loss and book profits if it breaches the trailing stop-loss.
+						</p>
+					
+				</div>
+			</div>
+			<hr>
+			<div id="data"/>
+			
+			<!-- <div class="container">
+				<div class="navbar">
+					<img src="./tablebackground.jpg" class="logo">
+				</div>
+			</div>
+			 -->
+			 <!-- <section id="footer">
+			</section> -->
+		</main>
+		
+		<div class="footer">	
+			<p>Author: Prabhash Rai<br>
+
+			<a href="https://prabhashrai02.github.io/portfolio/" style="color: white;">Know more about me!!!</a></p>
+		</div>
+	</body>
+
+
+</html> 

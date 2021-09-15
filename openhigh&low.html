@@ -1,0 +1,154 @@
+<html>
+	<head>
+		<link rel="icon" href="./fevicon.png" sizes="16x16">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="./screenerstyle.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />  
+		
+		<!-- navigation bar -->
+		<header>
+			<div class="topnav">
+				<a class="active" href="./index.html">Tips</a>
+				<!-- <button class="dropbtn">
+					<a href="#news">Strategies</a>
+				</button> -->
+				
+				<div class="dropdown">
+					<a href="#">Strategies</a>
+					<div class="dropdown-content">
+						<ul>
+							
+							<a href="./openhigh&low.html">Open high/low</a>
+							
+							<!-- <a href="./30minbreakout.html">30 mins breakout</a> -->
+							
+							<a href="./prevdaybreakout.html">Previous day breakout</a>
+						</ul>
+						<!-- <button class="dropbtn">Dropdown</button> -->
+					</div>
+				</div>
+				
+				
+				<!-- <a href="#contact">Contact</a> -->
+				<div id="top-right">
+					<a href="./about.html">About</a>
+				</div>
+				
+			</div>
+
+			<style>
+				
+				.box {
+					display:inline-block;
+					box-sizing: content-box;
+					text-align: center;
+					border: 10px;
+					/* border-collapse: collapse; */
+					width: 14%;
+					/* min-width: 150; */
+				}
+
+				.heading{
+					/* font-size:1.2em; */
+					color:white;
+					padding: 10;
+					font-weight: bold; background-color: black; border-bottom: 4px double black;
+				}
+				.row{
+					/* display:table-row; */
+					/* display: inline-block; */
+					padding: 5;
+					height: 20;
+				}
+			</style>
+
+		</header>
+		
+	</head>
+	
+	<body>
+		<br>
+		<main>
+			
+			<h1>Open High / Open low</h1> 
+			
+			<!-- <button>Request</button> -->
+			
+			<div class="square">
+				<h2>Insight of this Strategy</h2>
+				<hr><hr>
+				<div class="center">
+					
+					<p> Intraday trading Days Open = Days Low.</p>
+					<p>A trader can make a “Buy” position after 5-10 minutes of the market opening. When the scrip follows the rule Days Open = Days Low.</p> 
+					<p>	For Open=Low, your stop loss should be the low of the first 15-minute candle and if it breaks the low, get out of that stock.
+					</p>
+					<p> For Open=High, your stop loss should be the high of the first candle if it breaks the high, get out of that stock.
+					</p>
+					<p> Don't average if the order goes against you.
+					</p>
+					<p>Keep trailing stop-loss and book profits if it breaches the trailing stop-loss.
+					</p>
+					
+				</div>
+			</div>
+			<hr>
+			<!-- table -->
+			
+			<div class="output"></div>
+			
+			<script type= "text/javascript">
+				const output = document.querySelector('.output');
+				const btn = document.querySelector('button');
+				const url = 'https://docs.google.com/spreadsheets/d/';
+				const ssid = '1bs4XWS-9SEVMdYhXPBbkxHOTSpg8DYsc7fNdk2osgB0';
+				const q1 = '/gviz/tq?';
+				const q2 = 'tqx=out:json';
+				const q3 = 'sheet=Sheet3';
+				
+				getData();
+				
+				function getData(){
+					let url1 = `${url}${ssid}${q1}&${q2}&${q3}`;
+					fetch(url1)
+					.then(res => res.text())
+					.then(data => {
+						const json = JSON.parse(data.substr(47).slice(0,-2));
+						console.log(json.table);
+						const headings = makeCell(output,'','heading');
+						json.table.cols.forEach((col)=>{
+							const el = makeCell(headings,col.label,'box');
+						})
+						json.table.rows.forEach((row)=>{
+							//console.log(row);
+							const div = makeCell(output,'','row');
+							row.c.forEach((cell)=>{
+								const ele1 = makeCell(div,`${cell.v}`,'box');
+							})
+						})
+						
+					})
+				}
+				
+				function makeCell(parent,html,classAdd){
+					const ele = document.createElement('div');
+					parent.append(ele);
+					ele.innerHTML = html;
+					ele.classList.add(classAdd);
+					return ele;
+				}
+				</script>
+						
+			<!-- <section id="footer">
+			</section> -->
+		</main>
+		<hr>
+		<div class="footer">	
+			<p>Author: Prabhash Rai<br>
+				
+				<a href="https://prabhashrai02.github.io/portfolio/" style="color: white;">Know more about me!!!</a></p>
+			</div>
+		</body>
+
+
+</html> 
